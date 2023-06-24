@@ -1,0 +1,15 @@
+{
+    "name": "wppool-assignment/projects",
+    "description": "Projects",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Projects\\Includes\\": "includes/",
+            "Projects\\Admin\\": "admin/",
+            "Projects\\Frontend\\": "public/"
+        }
+    }
+}
