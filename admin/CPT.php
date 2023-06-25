@@ -40,18 +40,29 @@ trait CPT {
             'show_ui'            => true,
             'show_in_menu'       => true,
             'query_var'          => true,
-            'rewrite'            => array( 'slug' => 'project' ),
-            'capability_type'    => 'post',
+            'rewrite'            => array( 'slug' => 'projects' ),
+            // 'exclude_from_search' => true,
+            'show_in_nav_menus'  => false,
             'has_archive'        => true,
-            'hierarchical'       => false,
+            'capability_type'    => 'post',
+            'hierarchical'       => true,
             'menu_position'      => 20,
-            'supports'           => array( 'title', 'editor', 'author', 'thumbnail' ),
-            'taxonomies'         => array( 'category' ),
+            'supports'           => array( 'title', 'editor', 'thumbnail' ),
+            'taxonomies'         => array( 'project_cat' ),
             'show_in_rest'       => false
         );
          
         register_post_type( 'projects', $args );
-        
+    }
+
+    public function project_title( $title ) {
+        $screen = get_current_screen();
+   
+        if  ( 'projects' == $screen->post_type ) {
+             $title = __( 'Project Title', 'projects' );
+        }
+      
+        return $title;
     }
 
 }

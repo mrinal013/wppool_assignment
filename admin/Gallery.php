@@ -6,7 +6,7 @@ trait Gallery {
     public function project_gallery_metabox() {
         add_meta_box(
             'post_custom_gallery',
-            'Gallery',
+            __( 'Project Gallery', 'projects' ),
             array( $this, 'project_gallery_metabox_callback' ),
             'projects',
             'normal',
@@ -15,7 +15,7 @@ trait Gallery {
     }
 
     public function project_gallery_metabox_callback() {
-        wp_nonce_field( basename(__FILE__), 'sample_nonce' );
+        wp_nonce_field( basename(__FILE__), 'project_gallery_nonce' );
         global $post;
         $gallery_data = get_post_meta( $post->ID, 'gallery_data', true );
         ?>
@@ -25,8 +25,8 @@ trait Gallery {
             if ( isset( $gallery_data['image_url'] ) ){
                 for( $i = 0; $i < count( $gallery_data['image_url'] ); $i++ ){
                 ?>
-                <div class="gallery_single_row dolu">
-                  <div class="gallery_area image_container ">
+                <div class="gallery_single_row wrapper">
+                  <div class="gallery_area image_container">
                     <img class="gallery_img_img" src="<?php esc_html_e( $gallery_data['image_url'][$i] ); ?>" height="55" width="55" />
                     <input type="hidden"
                              class="meta_image_url"
@@ -39,7 +39,7 @@ trait Gallery {
                   </div>
                   <div class="clear"></div>
                 </div> 
-                </div>
+                <!-- </div> -->
                 <?php
                 }
             }
@@ -47,7 +47,7 @@ trait Gallery {
             </div>
             <div style="display:none" id="master_box">
                 <div class="gallery_single_row">
-                    <div class="gallery_area image_container" onclick="open_media_uploader_image(this)">
+                    <div class="gallery_area image_container">
                         <input class="meta_image_url" value="" type="hidden" name="gallery[image_url][]" />
                     </div> 
                     <div class="gallery_area"> 
@@ -57,7 +57,7 @@ trait Gallery {
                 </div>
             </div>
             <div id="add_gallery_single_row">
-              <input class="button add" type="button" value="+"  title="Add image"/>
+              <span class="button add" title="Add image"><i class="dashicons dashicons-plus"></i></span>
             </div>
         </div>
         <?php
@@ -69,7 +69,7 @@ trait Gallery {
 		}
 		$is_autosave = wp_is_post_autosave( $post_id );
 		$is_revision = wp_is_post_revision( $post_id );
-		$is_valid_nonce = ( isset( $_POST[ 'sample_nonce' ] ) && wp_verify_nonce( $_POST[ 'sample_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+		$is_valid_nonce = ( isset( $_POST[ 'project_gallery_nonce' ] ) && wp_verify_nonce( $_POST[ 'project_gallery_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
 		
 		if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
 				return;
@@ -79,26 +79,29 @@ trait Gallery {
 		}
 
 		// Correct post type
-		if ( isset( $_POST['post_type'] ) && 'projects' != $_POST['post_type'] ) // here you can set the post type name
+		if ( isset( $_POST['post_type'] ) && 'projects' != $_POST['post_type'] ) {
 			return;
+        }
 	 
-		if ( $_POST['gallery'] ){
+		if ( isset( $_POST['gallery'] ) && $_POST['gallery'] ) {
 			
 			// Build array for saving post meta
 			$gallery_data = array();
-			for ($i = 0; $i < count( $_POST['gallery']['image_url'] ); $i++ ){
-				if ( '' != $_POST['gallery']['image_url'][$i]){
+            
+			for ( $i = 0; $i <= count( $_POST['gallery']['image_url'] ); $i++ ) {
+				if ( '' != $_POST['gallery']['image_url'][$i] ) {
 					$gallery_data['image_url'][]  = $_POST['gallery']['image_url'][ $i ];
 				}
 			}
 	 
-			if ( $gallery_data ) 
+			if ( ! empty( $gallery_data ) ) {
 				update_post_meta( $post_id, 'gallery_data', $gallery_data );
-			else 
+            } else  {
 				delete_post_meta( $post_id, 'gallery_data' );
+            }
 		} 
 		// Nothing received, all fields are empty, delete option
-		else{
+		else {
 			delete_post_meta( $post_id, 'gallery_data' );
 		}
     }

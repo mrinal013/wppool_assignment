@@ -134,11 +134,26 @@ class Controller {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
-
+		
+		// Register 'projects' custom post type
 		$this->loader->add_action( 'init', $plugin_admin, 'register_cpt' );
+
+		$this->loader->add_action( 'init', $plugin_admin, 'register_ct' );
+		
+		// Project gallery metadata
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'project_gallery_metabox' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'project_gallery_save' );
+
+		// External URL metadata
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'project_external_url' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'project_url_save' );
+
+		// Scripts
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+
+		// Change project title placeholder
+		$this->loader->add_filter( 'enter_title_here', $plugin_admin, 'project_title' );
 		
 
 	}

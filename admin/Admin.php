@@ -1,8 +1,10 @@
 <?php
 namespace Projects\Admin;
 
+use Projects\Admin\CT as CT;
 use Projects\Admin\CPT as CPT;
 use Projects\Admin\Gallery as Gallery;
+use Projects\Admin\External_URL as External_URL;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -17,7 +19,7 @@ use Projects\Admin\Gallery as Gallery;
 
 class Admin {
 
-	use CPT, Gallery;
+	use CT, CPT, Gallery, External_URL;
 
 	/**
 	 * The ID of this plugin.
@@ -71,7 +73,7 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/project.build.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'project-css', plugin_dir_url( __FILE__ ) . 'assets/css/projects.build.css', array(), $this->version, 'all' );
 
 	}
 
