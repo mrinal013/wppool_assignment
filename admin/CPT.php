@@ -47,7 +47,7 @@ trait CPT {
             'menu_position'      => 20,
             'supports'           => array( 'title', 'editor', 'author', 'thumbnail' ),
             'taxonomies'         => array( 'category' ),
-            'show_in_rest'       => true
+            'show_in_rest'       => false
         );
          
         register_post_type( 'projects', $args );
