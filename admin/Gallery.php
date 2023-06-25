@@ -27,7 +27,7 @@ trait Gallery {
                 ?>
                 <div class="gallery_single_row dolu">
                   <div class="gallery_area image_container ">
-                    <img class="gallery_img_img" src="<?php esc_html_e( $gallery_data['image_url'][$i] ); ?>" height="55" width="55" onclick="open_media_uploader_image_this(this)"/>
+                    <img class="gallery_img_img" src="<?php esc_html_e( $gallery_data['image_url'][$i] ); ?>" height="55" width="55" />
                     <input type="hidden"
                              class="meta_image_url"
                              name="gallery[image_url][]"
@@ -35,9 +35,9 @@ trait Gallery {
                       />
                   </div>
                   <div class="gallery_area">
-                    <span class="button remove" onclick="remove_img(this)" title="Remove"/><i class="fas fa-trash-alt"></i></span>
+                    <span class="button remove" title="Remove"><i class="dashicons dashicons-trash"></i></span>
                   </div>
-                  <div class="clear" />
+                  <div class="clear"></div>
                 </div> 
                 </div>
                 <?php
@@ -51,7 +51,7 @@ trait Gallery {
                         <input class="meta_image_url" value="" type="hidden" name="gallery[image_url][]" />
                     </div> 
                     <div class="gallery_area"> 
-                        <span class="button remove" onclick="remove_img(this)" title="Remove"/><i class="fas fa-trash-alt"></i></span>
+                        <span class="button remove" title="Remove"><i class="dashicons dashicons-trash"></i></span>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -61,5 +61,45 @@ trait Gallery {
             </div>
         </div>
         <?php
+    }
+
+    public function project_gallery_save( $post_id ) {
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		$is_autosave = wp_is_post_autosave( $post_id );
+		$is_revision = wp_is_post_revision( $post_id );
+		$is_valid_nonce = ( isset( $_POST[ 'sample_nonce' ] ) && wp_verify_nonce( $_POST[ 'sample_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+		
+		if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+				return;
+		}
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
+		// Correct post type
+		if ( isset( $_POST['post_type'] ) && 'projects' != $_POST['post_type'] ) // here you can set the post type name
+			return;
+	 
+		if ( $_POST['gallery'] ){
+			
+			// Build array for saving post meta
+			$gallery_data = array();
+			for ($i = 0; $i < count( $_POST['gallery']['image_url'] ); $i++ ){
+				if ( '' != $_POST['gallery']['image_url'][$i]){
+					$gallery_data['image_url'][]  = $_POST['gallery']['image_url'][ $i ];
+				}
+			}
+	 
+			if ( $gallery_data ) 
+				update_post_meta( $post_id, 'gallery_data', $gallery_data );
+			else 
+				delete_post_meta( $post_id, 'gallery_data' );
+		} 
+		// Nothing received, all fields are empty, delete option
+		else{
+			delete_post_meta( $post_id, 'gallery_data' );
+		}
     }
 }

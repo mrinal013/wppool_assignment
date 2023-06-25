@@ -96,7 +96,7 @@ class Admin {
 		global $post;
 		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 			if ( 'projects' === $post->post_type ) {
-				wp_enqueue_script( 'projects', plugin_dir_url( __FILE__ ) . 'assets/js/projects.build.js', array( 'jquery', 'jquery-ui-core' ), $this->version, false );
+				wp_enqueue_script( 'projects', plugin_dir_url( __FILE__ ) . 'assets/js/projects.build.js', array( 'jquery', 'jquery-ui-core' ), $this->version, true );
 			}
 		}
 		// if( $hook != 'edit.php' && $hook != 'post.php' && $hook != 'post-new.php' ) 

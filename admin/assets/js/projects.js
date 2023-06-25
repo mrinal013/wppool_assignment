@@ -13,8 +13,8 @@ jQuery(document).ready(function( $ ) {
 
             for(var i = 0; i < length; i++){
                 var image_url = images[i].changed.url;
-                var box = jQuery('#master_box').html();
-                jQuery(box).appendTo('#img_box_container');
+                var box = $('#master_box').html();
+                $(box).appendTo('#img_box_container');
                 var element = jQuery('#img_box_container .gallery_single_row:last-child').find('.image_container');
                 var html = '<img class="gallery_img_img" src="'+image_url+'" height="55" width="55" onclick="open_media_uploader_image_this(this)"/>';
                 element.append(html);
@@ -23,6 +23,11 @@ jQuery(document).ready(function( $ ) {
             }
         });
         media_uploader.open();
-    });
+    })
+    .on( 'click', '.gallery_area .remove', function() {
+        let parent = $(this).parent().parent();
+        parent.remove()
+    })
 	
+    
 });
