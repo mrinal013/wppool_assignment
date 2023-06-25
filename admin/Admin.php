@@ -1,18 +1,8 @@
 <?php
-namespace wpAdminVue\Admin;
+namespace Projects\Admin;
 
-use wpAdminVue\Admin\Menu as Menu;
-use wpAdminVue\Admin\Submenu as Submenu;
-
-/**
- * The admin-specific functionality of the plugin.
- *
- * @link       mrinalbd.com
- * @since      1.0.0
- *
- * @package    Wp_Admin_Vue
- * @subpackage Wp_Admin_Vue/admin
- */
+use Projects\Admin\CPT as CPT;
+// use wpAdminVue\Admin\Submenu as Submenu;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -20,14 +10,14 @@ use wpAdminVue\Admin\Submenu as Submenu;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Wp_Admin_Vue
- * @subpackage Wp_Admin_Vue/admin
+ * @package    Projects
+ * @subpackage Projects/Admin
  * @author     Mrinal Haque <mrinalhaque99@gmail.com>
  */
 
 class Admin {
 
-	use Menu, Submenu;
+	use CPT;
 
 	/**
 	 * The ID of this plugin.
@@ -57,7 +47,8 @@ class Admin {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;	
+		$this->version = $version;
+
 	}
 
 	

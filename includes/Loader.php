@@ -1,6 +1,6 @@
 <?php
 
-namespace wpAdminVue\Includes;
+namespace Projects\Includes;
 
 /**
  * Register all actions and filters for the plugin

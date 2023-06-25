@@ -70,10 +70,10 @@ class Controller {
 	}
 
 	public function wp_admin_vue_operation() {
-		if ( defined( 'Projects_Plugin_Loaded' ) ) { 
+		if ( defined( 'PROJECTS_PLUGIN_LOADED' ) ) { 
 			return; 
 		}
-		define( 'Projects_Plugin_Loaded', true );
+		define( 'PROJECTS_PLUGIN_LOADED', true );
 		
 		$this->autoload();
 		$this->load_dependencies();
@@ -133,6 +133,8 @@ class Controller {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'init', $plugin_admin, 'register_cpt' );
 
 	}
 

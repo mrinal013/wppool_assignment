@@ -30,24 +30,26 @@ if ( ! defined( 'WPINC' ) ) {
  * Define plugin constants
  */
 define( 'PLUGIN_MAIN_FILE', __FILE__ );
-define( 'WP_ADMIN_VUE_VERSION', '1.0.0' );
-define( 'TEXTDOMAIN', 'wp-admin-vue');
-define( 'PAGE_SLUG', 'wp-admin-vue');
+define( 'PLUGIN_VERSION', '1.0.0' );
 
 function activation() {
 	require plugin_dir_path( __FILE__ ) . 'includes/Activator.php';
-	wpAdminVue\Includes\Activator::activate();
+	Projects\Includes\Activator::activate();
 }
 function deactivation() {
 	require plugin_dir_path( __FILE__ ) . 'includes/Deactivator.php';
-	wpAdminVue\Includes\Deactivator::deactivate();
+	Projects\Includes\Deactivator::deactivate();
 }
 register_activation_hook( __FILE__, 'activation' );
 register_deactivation_hook( __FILE__, 'deactivation' );
 
-add_action( 'init', function(){
-	if ( ! defined( 'WP_Admin_Vue_Plugin_Loaded' ) ) {
+
+
+function projects_plugin_loaded() {
+	if ( ! defined( 'PROJECTS_PLUGIN_LOADED' ) ) {
 		require plugin_dir_path( __FILE__ ) . 'includes/Controller.php';
-		new wpAdminVue\Includes\Controller();
+		new Projects\Includes\Controller();
     }
-});
+}
+
+add_action( 'plugins_loaded', 'projects_plugin_loaded' );
