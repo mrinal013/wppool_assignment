@@ -60,16 +60,17 @@ class Controller {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		$this->wp_admin_vue_operation();
-		if ( defined( 'PROJECTS_VERSION' ) ) {
-			$this->version = PROJECTS_VERSION;
+		$this->projects_operation();
+		if ( defined( 'PLUGIN_VERSION' ) ) {
+			$this->version = PLUGIN_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'projects';
 	}
 
-	public function wp_admin_vue_operation() {
+	public function projects_operation() {
+
 		if ( defined( 'PROJECTS_PLUGIN_LOADED' ) ) { 
 			return; 
 		}
@@ -135,6 +136,9 @@ class Controller {
 		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_admin, 'register_cpt' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'project_gallery_metabox' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		
 
 	}
 

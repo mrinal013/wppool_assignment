@@ -2,7 +2,7 @@
 namespace Projects\Admin;
 
 use Projects\Admin\CPT as CPT;
-// use wpAdminVue\Admin\Submenu as Submenu;
+use Projects\Admin\Gallery as Gallery;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -17,7 +17,7 @@ use Projects\Admin\CPT as CPT;
 
 class Admin {
 
-	use CPT;
+	use CPT, Gallery;
 
 	/**
 	 * The ID of this plugin.
@@ -45,7 +45,6 @@ class Admin {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
@@ -72,7 +71,7 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/wp-admin-vue.build.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/project.build.css', array(), $this->version, 'all' );
 
 	}
 
@@ -81,7 +80,7 @@ class Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts( $hook ) {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -94,8 +93,15 @@ class Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		global $post;
+		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+			if ( 'projects' === $post->post_type ) {
+				wp_enqueue_script( 'projects', plugin_dir_url( __FILE__ ) . 'assets/js/projects.build.js', array( 'jquery', 'jquery-ui-core' ), $this->version, false );
+			}
+		}
+		// if( $hook != 'edit.php' && $hook != 'post.php' && $hook != 'post-new.php' ) 
+		// return;
 		
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/js/wp-admin-vue.build.js', array(  ), $this->version, false );
 
 	}
 
