@@ -47,18 +47,25 @@
 
 .button.remove {
   background: none;
-  color: #f1f1f1;
+  color: #FF0000;
   position: absolute;
-  border: none;
-  top: 4px;
-  right: 7px;
+  border: 1px solid #FF0000;
+  border-radius: 50%;
+  top: -15px;
+  right: -15px;
   font-size: 1.2em;
   padding: 0px;
-  box-shadow: none; }
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .button.remove:hover {
-  background: none;
-  color: #fff; }
+  background: #FF0000;
+  color: #fff;
+  border: none; }
 
 .button.add {
   background: #c3c2c2;

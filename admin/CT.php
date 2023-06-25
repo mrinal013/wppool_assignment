@@ -35,6 +35,7 @@ trait CT {
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => array( 'slug' => 'project_categories' ),
+            'show_in_rest'       => true
         );
 
         register_taxonomy( 'project_cat', array( 'projects' ), $args );

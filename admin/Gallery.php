@@ -27,11 +27,11 @@ trait Gallery {
                 ?>
                 <div class="gallery_single_row wrapper">
                   <div class="gallery_area image_container">
-                    <img class="gallery_img_img" src="<?php esc_html_e( $gallery_data['image_url'][$i] ); ?>" height="55" width="55" />
+                    <img class="gallery_img_img" src="<?php echo esc_url( $gallery_data['image_url'][$i] ); ?>" height="55" width="55" />
                     <input type="hidden"
                              class="meta_image_url"
                              name="gallery[image_url][]"
-                             value="<?php esc_html_e( $gallery_data['image_url'][$i] ); ?>"
+                             value="<?php esc_url( $gallery_data['image_url'][$i] ); ?>"
                       />
                   </div>
                   <div class="gallery_area">
@@ -87,10 +87,10 @@ trait Gallery {
 			
 			// Build array for saving post meta
 			$gallery_data = array();
-            
+
 			for ( $i = 0; $i <= count( $_POST['gallery']['image_url'] ); $i++ ) {
 				if ( '' != $_POST['gallery']['image_url'][$i] ) {
-					$gallery_data['image_url'][]  = $_POST['gallery']['image_url'][ $i ];
+					$gallery_data['image_url'][]  = sanitize_url( $_POST['gallery']['image_url'][ $i ] );
 				}
 			}
 	 

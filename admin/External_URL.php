@@ -11,7 +11,8 @@ trait External_URL {
             array( $this, 'project_url_metabox_callback' ),
             'projects',
             'normal',
-            'core'
+            'core',
+            array('__back_compat_meta_box' => true)
         );
     }
 
@@ -24,7 +25,7 @@ trait External_URL {
 		$value = get_post_meta( $post->ID, 'project_external_url', true );
 
         ?>
-        <input type="text" id="project_external_url" name="project_external_url" value="<?php echo esc_attr( $value ); ?>" />
+        <input type="text" id="project_external_url" name="project_external_url" value="<?php echo esc_url( $value ); ?>" />
         <?php
 
     }
@@ -50,7 +51,7 @@ trait External_URL {
         }
 
         if ( isset( $_POST['project_external_url'] ) && $_POST['project_external_url'] ) {
-            update_post_meta( $post_id, 'project_external_url', $_POST['project_external_url'] );
+            update_post_meta( $post_id, 'project_external_url', sanitize_url( $_POST['project_external_url'] ) );
         }
     }
 

@@ -86,14 +86,27 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./admin/assets/js/gallery.js":
+/*!************************************!*\
+  !*** ./admin/assets/js/gallery.js ***!
+  \************************************/
+/*! exports provided: gallery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"gallery\", function() { return gallery; });\nfunction gallery() {\n  jQuery(document).ready(function ($) {\n    $(document).on('click', '#add_gallery_single_row .add', function (e) {\n      let media_uploader = wp.media({\n        frame: \"post\",\n        state: \"insert\",\n        multiple: true\n      });\n      media_uploader.on(\"insert\", function () {\n        let length = media_uploader.state().get(\"selection\").length;\n        let images = media_uploader.state().get(\"selection\").models;\n        for (let i = 0; i < length; i++) {\n          let image_url = images[i].changed.url;\n          let box = $('#master_box').html();\n          $(box).appendTo('#img_box_container');\n          let element = jQuery('#img_box_container .gallery_single_row:last-child').find('.image_container');\n          let html = '<img class=\"gallery_img_img\" src=\"' + image_url + '\" height=\"55\" width=\"55\" onclick=\"open_media_uploader_image_this(this)\"/>';\n          element.append(html);\n          element.find('.meta_image_url').val(image_url);\n        }\n      });\n      media_uploader.open();\n    }).on('click', '.gallery_area .remove', function () {\n      let parent = $(this).parent().parent();\n      parent.remove();\n    });\n  });\n}\n\n\n//# sourceURL=webpack:///./admin/assets/js/gallery.js?");
+
+/***/ }),
+
 /***/ "./admin/assets/js/projects.js":
 /*!*************************************!*\
   !*** ./admin/assets/js/projects.js ***!
   \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("jQuery(document).ready(function ($) {\n  $(document).on('click', '#add_gallery_single_row .add', function (e) {\n    let media_uploader = wp.media({\n      frame: \"post\",\n      state: \"insert\",\n      multiple: true\n    });\n    media_uploader.on(\"insert\", function () {\n      let length = media_uploader.state().get(\"selection\").length;\n      let images = media_uploader.state().get(\"selection\").models;\n      for (let i = 0; i < length; i++) {\n        let image_url = images[i].changed.url;\n        let box = $('#master_box').html();\n        $(box).appendTo('#img_box_container');\n        let element = jQuery('#img_box_container .gallery_single_row:last-child').find('.image_container');\n        let html = '<img class=\"gallery_img_img\" src=\"' + image_url + '\" height=\"55\" width=\"55\" onclick=\"open_media_uploader_image_this(this)\"/>';\n        element.append(html);\n        element.find('.meta_image_url').val(image_url);\n      }\n    });\n    media_uploader.open();\n  }).on('click', '.gallery_area .remove', function () {\n    let parent = $(this).parent().parent();\n    parent.remove();\n  });\n});\n\n//# sourceURL=webpack:///./admin/assets/js/projects.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gallery_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gallery.js */ \"./admin/assets/js/gallery.js\");\n\nObject(_gallery_js__WEBPACK_IMPORTED_MODULE_0__[\"gallery\"])();\n\n//# sourceURL=webpack:///./admin/assets/js/projects.js?");
 
 /***/ })
 
