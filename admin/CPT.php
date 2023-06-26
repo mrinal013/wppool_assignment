@@ -47,7 +47,7 @@ trait CPT {
             'capability_type'    => 'post',
             'hierarchical'       => true,
             'menu_position'      => 20,
-            'supports'           => array( 'title', 'editor', 'thumbnail' ),
+            'supports'           => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
             'taxonomies'         => array( 'project_cat' ),
             'show_in_rest'       => true
         );

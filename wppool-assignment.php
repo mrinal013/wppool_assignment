@@ -93,7 +93,7 @@ function create_block_projects_block_init() {
 		}
 
 		if ( 'projects' == $typenow ) {
-			return;
+			// return;
 		}
 
 	  }
@@ -109,3 +109,14 @@ function projects_render_shortcode() {
 	$html = '<div id="projects"></div>';
 	return $html;
 }
+
+function projects_metadata_rest_api( $data, $post, $context ) {
+	$project_external_url = get_post_meta( $post->ID, '_project_external_url', true );
+	
+	if( $project_external_url ) {
+		$data->data['project_external_url'] = $project_external_url;
+	}
+	
+	return $data;
+	}
+	add_filter( 'rest_prepare_projects', 'projects_metadata_rest_api', 10, 3 );

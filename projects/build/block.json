@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "create-block/projects",
   "version": "0.1.0",
-  "title": "Projects",
+  "title": "projects",
   "category": "widgets",
   "icon": "smiley",
   "description": "Example block scaffolded with Create Block tool.",

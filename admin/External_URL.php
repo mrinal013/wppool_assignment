@@ -12,7 +12,7 @@ trait External_URL {
             'projects',
             'normal',
             'core',
-            array('__back_compat_meta_box' => true)
+            array( '__back_compat_meta_box' => true )
         );
     }
 
@@ -22,10 +22,10 @@ trait External_URL {
         wp_nonce_field( basename(__FILE__), 'project_external_url_nonce' );
 
         // Use get_post_meta to retrieve an existing value from the database.
-		$value = get_post_meta( $post->ID, 'project_external_url', true );
+		$project_external_url = get_post_meta( $post->ID, '_project_external_url', true );
 
         ?>
-        <input type="text" id="project_external_url" name="project_external_url" value="<?php echo esc_url( $value ); ?>" />
+        <input type="text" id="project-external-url" name="project_external_url" value="<?php echo esc_url( $project_external_url ); ?>" />
         <?php
 
     }
@@ -51,7 +51,24 @@ trait External_URL {
         }
 
         if ( isset( $_POST['project_external_url'] ) && $_POST['project_external_url'] ) {
-            update_post_meta( $post_id, 'project_external_url', sanitize_url( $_POST['project_external_url'] ) );
+            update_post_meta( $post_id, '_project_external_url', sanitize_url( $_POST['project_external_url'] ) );
+        }
+    }
+
+    public function project_url_meta() {
+        $metafields = array( '_project_external_url' );
+
+        foreach( $metafields as $metafield ) {
+            // Pass an empty string to register the meta key across all existing post types.
+            register_post_meta( '', $metafield, array(
+                'show_in_rest' => true,
+                'type' => 'string',
+                'single' => true,
+                'sanitize_callback' => 'sanitize_text_field',
+                'auth_callback' => function() { 
+                    return current_user_can( 'edit_posts' );
+                }
+            ));
         }
     }
 
