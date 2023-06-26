@@ -65,7 +65,7 @@ class Frontend {
 		 * class.
 		 */
 
-		wp_enqueue_style( 'projects', plugin_dir_url( __FILE__ ) . 'assets/css/projects.build.css', array(), $this->version, 'all' );
+		// wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/wp-admin-vue.build.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,8 +88,12 @@ class Frontend {
 		 * class.
 		 */
 
-		wp_enqueue_script( 'projects', plugin_dir_url( __FILE__ ) . 'assets/js/projects.build.js', array( 'jquery' ), $this->version, false );
+		// wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/js/wp-admin-vue.build.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	public function projects_render_shortcode() {
+		return 'Hello';
 	}
 
 }

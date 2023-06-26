@@ -104,11 +104,12 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"]
+
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+  // save,
 });
 
 /***/ }),
@@ -148,7 +149,7 @@ __webpack_require__.r(__webpack_exports__);
 function save() {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, 'Projects – hello from the saved content!');
+  }, 'Projects – hello from the  content!');
 }
 
 /***/ }),
