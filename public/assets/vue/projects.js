@@ -4,7 +4,7 @@ import App from "./App.vue";
 import router from "./router";
 
 Vue.use(Vuetify);
-Vue.config.productionTip = false;
+// Vue.config.productionTip = false;
 /* eslint-disable no-new */
 window.addEventListener("load", function() {
   new Vue({
@@ -14,3 +14,4 @@ window.addEventListener("load", function() {
     render: (h) => h(App),
   });
 });
+

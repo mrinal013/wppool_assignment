@@ -1,14 +1,6 @@
 <template>
 <div id="app">
-  <v-app>
-    <v-content>
-      <v-row>
-        <v-col>
-        <router-view />
-        </v-col>
-      </v-row>
-    </v-content>
-  </v-app>
+  Hello Vue
 </div>
 </template>
 
