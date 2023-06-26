@@ -106,5 +106,6 @@ function create_block_projects_block_init() {
 add_action( 'init', 'create_block_projects_block_init' );
 
 function projects_render_shortcode() {
-	return 'Hello';
+	$html = '<button id="projects">Click</button>';
+	return $html;
 }
