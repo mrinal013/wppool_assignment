@@ -81,19 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./public/assets/js/projects.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./public/assets/vue/projects.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./public/assets/js/projects.js":
-/*!**************************************!*\
-  !*** ./public/assets/js/projects.js ***!
-  \**************************************/
+/***/ "./public/assets/vue/projects.js":
+/*!***************************************!*\
+  !*** ./public/assets/vue/projects.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("(function ($) {\n  'use strict';\n\n  /**\n   * All of the code for your public-facing JavaScript source\n   * should reside in this file.\n   *\n   * Note: It has been assumed you will write jQuery code here, so the\n   * $ function reference has been prepared for usage within the scope\n   * of this function.\n   *\n   * This enables you to define handlers, for when the DOM is ready:\n   *\n   * $(function() {\n   *\n   * });\n   *\n   * When the window is loaded:\n   *\n   * $( window ).load(function() {\n   *\n   * });\n   *\n   * ...and/or other possibilities.\n   *\n   * Ideally, it is not considered best practise to attach more than a\n   * single DOM-ready or window-load handler for a particular page.\n   * Although scripts in the WordPress core, Plugins and Themes may be\n   * practising this, we should strive to set a better example in our own work.\n   */\n})(jQuery);\n\n//# sourceURL=webpack:///./public/assets/js/projects.js?");
+eval("\n\n//# sourceURL=webpack:///./public/assets/vue/projects.js?");
 
 /***/ })
 
