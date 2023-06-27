@@ -4,7 +4,7 @@ import VueAxios from 'vue-axios'
 import Vuetify from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import App from "./App.vue";
-// import store from './store/store'
+import { store } from './store/store.js';
 // import router from "./router";
 
 Vue.use(Vuetify);
@@ -15,9 +15,8 @@ window.addEventListener("load", function() {
   new Vue({
     el: "#projects",
     // router,
-    // store,
+    store,
     vuetify: new Vuetify(),
     render: (h) => h(App),
   });
 });
-

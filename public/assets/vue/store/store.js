@@ -1,9 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 Vue.use(Vuex)
-const state = {
-  count: 0
-}
-export default new Vuex.Store({
-  state
+
+export const store = new Vuex.Store({
+    state: {
+        counter: 0,
+        projects: []
+    },
+    getters: {
+        counter: state => state.counter * 2
+    },
+    mutations: {
+        increment: state => state.counter++
+    }
 })

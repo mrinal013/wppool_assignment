@@ -48,6 +48,6 @@
     "vue-router": "^3.1.6",
     "vuetify": "^2.2.27",
     "vuetify-loader": "^1.4.3",
-    "vuex": "^4.1.0"
+    "vuex": "^2.5.0"
   }
 }
