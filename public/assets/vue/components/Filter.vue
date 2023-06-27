@@ -1,15 +1,15 @@
 <template>
   <div>
-    <v-btn raised color="error">Vue</v-btn>
+    <p>Filter</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'List',
+  name: 'Filter',
   data () {
     return {
-      msg: 'I am list component'
+      msg: 'I am card component'
     }
   }
 }

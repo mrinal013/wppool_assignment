@@ -1,22 +1,15 @@
 <template>
-  <div class="home">
-    <Card></Card>
+  <div>
+    <v-btn raised color="error">Vue</v-btn>
   </div>
 </template>
 
 <script>
-import Card from '../components/Card.vue';
-
 export default {
-
-  name: 'Home',
-  components: {
-    Card
-  },
-
+  name: 'Sort',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js Admin App'
+      msg: 'I am list component'
     }
   }
 }

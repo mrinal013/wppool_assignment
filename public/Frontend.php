@@ -90,6 +90,13 @@ class Frontend {
 
 		wp_enqueue_script( 'projects', plugin_dir_url( __FILE__ ) . 'assets/js/projects.build.js', array(), $this->version, false );
 
+		wp_localize_script( 'projects', 'frontend_ajax_object',
+			array( 
+				'ajaxurl'	=> admin_url( 'admin-ajax.php' ),
+				'rest_url'	=> get_rest_url(),
+			)
+		);
+
 	}
 
 	public function projects_render_shortcode() {
