@@ -7,6 +7,7 @@ trait REST_API {
         register_rest_route( 'projects/v1', '/all', array(
             'methods' => 'GET',
             'callback' => [ $this, 'get_all_projects' ],
+            'permission_callback' => '__return_true'
           ) );
     }
 

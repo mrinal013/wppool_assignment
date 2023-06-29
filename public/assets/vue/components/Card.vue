@@ -15,7 +15,7 @@
 
     <v-divider class="mx-4"></v-divider>
 
-    <!-- <v-card-title>Category: {{ catName }}</v-card-title> -->
+    <v-card-title>Category: {{ catName }}</v-card-title>
 
     
 
@@ -34,25 +34,27 @@ export default {
   },
   data () {
     return {
-      // project_id: this.project_id,
       title: '',
-      sourceUrl: ''
+      sourceUrl: '',
+      catName: ''
     }
   },
   mounted: function() {
-    // console.log(this.$store.state.projects);
     const project_id = this.project_id
     const projects = this.$store.state.projects;
     for( let i =0; i<projects.length; i++ ) {
       if ( projects[i].project_id == this.project_id ) {
         this.title = projects[i].project_title;
         this.sourceUrl = projects[i].project_cover;
+
+        if ( Array.isArray( projects[i].project_cat ) ) {
+          let catNames = Object.keys( projects[i].project_cat ).map( function(key) { return projects[i].project_cat[key]['name'] } );
+          this.catName = catNames.toString();
+        }
+
         return;
       }
     }
-
-    // console.log(this.project_id)
-    // console.log(card)
   }
 }
 </script>
