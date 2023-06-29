@@ -3,7 +3,7 @@
 <v-container>
   <v-layout row wrap>
     <v-flex xs3>
-    <CatFilter />
+      <CatFilter />
     </v-flex>
     <v-flex xs9>
       <v-container>
@@ -54,19 +54,16 @@ export default {
   },
   methods: {
     increment() {
-      console.log(this.$store.state.projects)
       this.$store.commit('increment')
     }
   },
   mounted: function() {
 
     let restUrl = frontend_ajax_object.rest_url;
-
     let projectsUrl = restUrl + 'projects/v1/all';
 
     this.axios.get( projectsUrl  )
     .then((result) => {
-      // console.log(result.data);
       this.$store.state.projects = result.data;
       this.projects = result.data;
     })
