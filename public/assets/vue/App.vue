@@ -60,7 +60,6 @@ export default {
   mounted: function() {
     // console.log(frontend_ajax_object.rest_url)
 
-    if ( frontend_ajax_object.rest_url ) {
     let restUrl = frontend_ajax_object.rest_url;
 
     console.log(restUrl)
@@ -69,37 +68,36 @@ export default {
 
     this.axios.get( projectsUrl  )
     .then((result) => {
-      for( let i = 0; i < result.data.length; i++ ) {
-        let projectId = result.data[i].id;
-        // if ( projectId ) {
-        //   this.$store.state.projects[i]['projectId'] = projectId;
-        // }
+      // for( let i = 0; i < result.data.length; i++ ) {
+      //   let projectId = result.data[i].id;
+      //   // if ( projectId ) {
+      //   //   this.$store.state.projects[i]['projectId'] = projectId;
+      //   // }
 
-        let projectTitle = result.data[i].title.rendered;
-        // if ( projectTitle ) {
-        //   this.$store.state.projects[i]['projectTitle'] = projectTitle;
-        // }
+      //   let projectTitle = result.data[i].title.rendered;
+      //   // if ( projectTitle ) {
+      //   //   this.$store.state.projects[i]['projectTitle'] = projectTitle;
+      //   // }
         
-        let projectCat = result.data[i].project_cat;
-        let projectCatUrl = rest_url + 'wp/v2/project_cat/' + this.projectCat;
-        let catName = '';
-        this.axios.get( projectCatUrl )
-        .then((result) => {
-          catName = result.data.name;
-            // this.$store.state.projects[i]['projectCatName'] = result.data.name;
-        })
+      //   let projectCat = result.data[i].project_cat;
+      //   let projectCatUrl = restUrl + 'wp/v2/project_cat/' + this.projectCat;
+      //   let catName = '';
+      //   this.axios.get( projectCatUrl )
+      //   .then((result) => {
+      //     catName = result.data.name;
+      //       // this.$store.state.projects[i]['projectCatName'] = result.data.name;
+      //   })
         
-        let mediaId = result.data[i].featured_media;
-        let mediaUrl = rest_url + 'wp/v2/media/' + mediaId;
+      //   let mediaId = result.data[i].featured_media;
+      //   let mediaUrl = restUrl + 'wp/v2/media/' + mediaId;
 
-        this.axios.get( this.mediaUrl )
-        .then((result) => {
-          // this.$store.state.projects[i]['sourceUrl'] = result.data.source_url;
-        })
+      //   this.axios.get( this.mediaUrl )
+      //   .then((result) => {
+      //     // this.$store.state.projects[i]['sourceUrl'] = result.data.source_url;
+      //   })
 
-        }
+      //   }
     })
-  }
   }
 }
 </script>
