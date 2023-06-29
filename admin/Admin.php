@@ -5,6 +5,7 @@ use Projects\Admin\CT as CT;
 use Projects\Admin\CPT as CPT;
 use Projects\Admin\Gallery as Gallery;
 use Projects\Admin\External_URL as External_URL;
+use Projects\Admin\REST_API as REST_API;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -19,7 +20,7 @@ use Projects\Admin\External_URL as External_URL;
 
 class Admin {
 
-	use CT, CPT, Gallery, External_URL;
+	use CT, CPT, Gallery, External_URL, REST_API;
 
 	/**
 	 * The ID of this plugin.

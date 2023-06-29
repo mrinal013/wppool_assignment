@@ -155,6 +155,9 @@ class Controller {
 
 		// Change project title placeholder
 		$this->loader->add_filter( 'enter_title_here', $plugin_admin, 'project_title' );
+
+		// Custom rest api to grab all projects and single project information
+		$this->loader->add_filter( 'rest_api_init', $plugin_admin, 'rest_api_all_projects' );
 		
 
 	}

@@ -15,7 +15,7 @@
 
     <v-divider class="mx-4"></v-divider>
 
-    <v-card-title>Category: {{ catName }}</v-card-title>
+    <!-- <v-card-title>Category: {{ catName }}</v-card-title> -->
 
     
 
@@ -27,16 +27,32 @@
 import Dialog  from "./Dialog.vue";
 
 export default {
-  props: [ 'project_id', 'title', 'media_url', 'project_cat' ],
+  props: [ 'project_id' ],
   name: 'Card',
   components: {
     Dialog
   },
   data () {
     return {
+      // project_id: this.project_id,
+      title: '',
+      sourceUrl: ''
     }
   },
   mounted: function() {
+    // console.log(this.$store.state.projects);
+    const project_id = this.project_id
+    const projects = this.$store.state.projects;
+    for( let i =0; i<projects.length; i++ ) {
+      if ( projects[i].project_id == this.project_id ) {
+        this.title = projects[i].project_title;
+        this.sourceUrl = projects[i].project_cover;
+        return;
+      }
+    }
+
+    // console.log(this.project_id)
+    // console.log(card)
   }
 }
 </script>
