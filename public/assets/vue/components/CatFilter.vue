@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { store } from '../store/store.js';
+
 export default {
   name: 'CatFilter',
   data () {
@@ -21,8 +23,37 @@ export default {
   methods: {
     selectedCat: function(categoryId, event) {
 
-      console.log(categoryId, event.target.checked)
-    }
+      this.$store.state.projectCats.map( function(key) {
+        if ( key.catId === categoryId ) {
+          key.isActive = event.target.checked;
+        }
+      });
+      
+      
+      let storeCat = this.$store.state.projectCats;
+      // console.log(this.catChecked)
+      let totalCat = this.$store.state.projectCats.length;
+      
+        if ( event.target.checked ) {
+          
+          if ( ! this.catChecked.includes( categoryId ) ) {
+            this.catChecked.push(categoryId);
+          }
+
+        } else {
+            this.catChecked = this.catChecked.filter( item => item != parseInt(categoryId) )
+        }
+      
+      // console.log(this.catChecked)
+
+      console.log(this.$store.state.projects)
+
+      let newProjects = [
+        ''
+      ];
+      this.$store.state.projects = newProjects;
+
+      }
   },
   mounted: function() {
 
@@ -35,6 +66,7 @@ export default {
           'catId': result.data[i].id,
           'catName': result.data[i].name,
           'count': result.data[i].count,
+          'isActive': false
         })
       }
       this.projectCat = this.$store.state.projectCats;

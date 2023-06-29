@@ -65,8 +65,12 @@ export default {
     this.axios.get( projectsUrl  )
     .then((result) => {
       this.$store.state.projects = result.data;
-      this.projects = result.data;
-    })
+      this.projects = this.$store.state.projects;
+    });
+
+    // let activeCat = this.$store.state.projectCats;
+
+    
   }
 }
 </script>

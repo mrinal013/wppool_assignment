@@ -48,11 +48,13 @@ export default {
         this.sourceUrl = projects[i].project_cover;
 
         if ( Array.isArray( projects[i].project_cat ) ) {
-          let catNames = Object.keys( projects[i].project_cat ).map( function(key) { return projects[i].project_cat[key]['name'] } );
-          this.catName = catNames.toString();
+          let catNames = Object.keys( projects[i].project_cat ).map( 
+            function(key) { 
+              return projects[i].project_cat[key]['name'];
+            });
+            this.catName = catNames.toString();
         }
-
-        return;
+      return;
       }
     }
   }
