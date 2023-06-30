@@ -5,18 +5,17 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        counter: 0,
         allprojects: [],
         activeProjects: [],
         projectCats: [],
-        checkedCat: []
+        checkedCat: [],
+        titleOrder: 'titleasc',
+        catOrder: 'catasc'
     },
     getters: {
-        counter: state => state.counter * 2,
         activeProjects: state => state.activeProjects
     },
     mutations: {
-        increment: state => state.counter++,
         checked( state, payload ) {
 
             const payloadToArr = JSON.parse(JSON.stringify(payload));
@@ -40,16 +39,21 @@ export const store = new Vuex.Store({
                     }
                 }
 
-                state.activeProjects = activeCatProjects
+                state.activeProjects = activeCatProjects;
             } else {
-                state.activeProjects = state.allprojects
+                state.activeProjects = state.allprojects;
             }
+
+            console.log(state.titleOrder);
+
+            this.commit( 'sorting', state.titleOrder )
             
         },
         sorting(state, payload) {
-            console.log(payload)
+            state.titleOrder = payload;
+            const activeProjects = state.activeProjects;
             if ( payload == 'titledesc' ) {
-                state.activeProjects.sort( (a, b) => {
+                activeProjects.sort( (a, b) => {
                     let fa = a.project_title.toLowerCase(),
                         fb = b.project_title.toLowerCase();
                     if( fa > fb ) {
@@ -59,11 +63,11 @@ export const store = new Vuex.Store({
                         return 1;
                     }
                     return 0;
-                })
+                });
             }
 
             if ( payload == 'titleasc' ) {
-                state.activeProjects.sort( (a, b) => {
+                activeProjects.sort( (a, b) => {
                     let fa = a.project_title.toLowerCase(),
                         fb = b.project_title.toLowerCase();
                     if( fb > fa ) {
@@ -73,8 +77,14 @@ export const store = new Vuex.Store({
                         return 1;
                     }
                     return 0;
-                })
+                });
             }
+
+            if( payload == 'titledefault' ) {
+                activeProjects = state.activeProjects;
+            }
+
+            
         }
     }
 })

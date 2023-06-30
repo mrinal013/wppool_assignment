@@ -10,8 +10,6 @@
         <v-layout row wrap>
           <v-flex xs12>
             <Sort />
-            <p>{{counter}}</p>
-            <button v-on:click="increment">Click</button>
           </v-flex>
           <v-flex xs12>
             <v-layout wrap>
@@ -46,17 +44,8 @@ export default {
     }
   },
   computed: {
-    counter() {
-      return this.$store.state.counter
-    },
     projects() {
-      console.log(this.$store.getters.activeProjects)
       return this.$store.getters.activeProjects;
-    }
-  },
-  methods: {
-    increment() {
-      this.$store.commit('increment')
     }
   },
   mounted: function() {

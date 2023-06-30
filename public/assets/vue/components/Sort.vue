@@ -33,7 +33,14 @@ export default {
   },
   methods: {
     titleChecked: function() {
-      this.isTitleChecked = !this.isTitleChecked
+      this.isTitleChecked = !this.isTitleChecked;
+
+      if ( this.isTitleChecked ) {
+        this.$store.commit( 'sorting', 'titleasc' );
+      } else {
+        // this.$store.state.titleOrder = 'titleasc';
+        this.$store.commit( 'sorting', 'titledefault' );
+      }
     },
     catChecked: function() {
       this.isCatChecked = !this.isCatChecked

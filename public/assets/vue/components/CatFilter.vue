@@ -29,7 +29,6 @@ export default {
         }
       });
       
-      
       let storeCat = this.$store.state.projectCats;
       let totalCat = this.$store.state.projectCats.length;
       
