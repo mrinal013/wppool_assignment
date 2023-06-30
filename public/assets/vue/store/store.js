@@ -9,8 +9,8 @@ export const store = new Vuex.Store({
         activeProjects: [],
         projectCats: [],
         checkedCat: [],
-        titleOrder: 'titleasc',
-        catOrder: 'catasc'
+        titleOrder: '',
+        catOrder: ''
     },
     getters: {
         activeProjects: state => state.activeProjects
@@ -46,7 +46,8 @@ export const store = new Vuex.Store({
 
             console.log(state.titleOrder);
 
-            this.commit( 'sorting', state.titleOrder )
+
+            this.commit( 'sorting', state.titleOrder );
             
         },
         sorting(state, payload) {
