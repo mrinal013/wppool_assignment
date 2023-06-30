@@ -18,11 +18,26 @@ export const store = new Vuex.Store({
     mutations: {
         increment: state => state.counter++,
         checked( state, payload ) {
-            // console.log( payload.length)
-            let payloadLength = payload.length;
+            
+            const payloadToArr = JSON.parse(JSON.stringify(payload));
+            let payloadLength = payloadToArr.length;
             if ( payloadLength ) {
-                // console.log( payload.length)
-                let activeCatProjects = '';
+                const activeCatProjects = [];
+
+                let Allprojects = state.allprojects,
+                    AllprojectsLength = Allprojects.length;
+
+                for( let i =0; i < AllprojectsLength; i++ ) {
+                    if ( Allprojects[i].project_cat ) {
+                        
+                        let projectCats = Allprojects[i].project_cat.map( value => value.term_id );
+                        let filteredArray = projectCats.filter(value => payloadToArr.includes(value));
+                        if ( filteredArray.length ) {
+                            activeCatProjects.push(Allprojects[i])
+                        }
+                    }
+                }
+
                 state.activeProjects = activeCatProjects
             } else {
                 state.activeProjects = state.allprojects

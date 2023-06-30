@@ -48,6 +48,7 @@ export default {
       return this.$store.state.counter
     },
     projects() {
+      console.log(this.$store.getters.activeProjects)
       return this.$store.getters.activeProjects;
     }
   },
