@@ -41,7 +41,7 @@ export default {
   },
   mounted: function() {
     const project_id = this.project_id
-    const projects = this.$store.state.projects;
+    const projects = this.$store.state.activeProjects;
     for( let i =0; i<projects.length; i++ ) {
       if ( projects[i].project_id == this.project_id ) {
         this.title = projects[i].project_title;

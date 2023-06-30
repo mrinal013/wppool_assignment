@@ -41,16 +41,15 @@ export default {
   },
   data() {
     return {
-      projects: []
     }
   },
   computed: {
     counter() {
       return this.$store.state.counter
+    },
+    projects() {
+      return this.$store.getters.activeProjects;
     }
-    // projects() {
-    //   return this.$store.state.projects
-    // }
   },
   methods: {
     increment() {
@@ -64,12 +63,9 @@ export default {
 
     this.axios.get( projectsUrl  )
     .then((result) => {
-      this.$store.state.projects = result.data;
-      this.projects = this.$store.state.projects;
+      this.$store.state.allprojects = result.data;
+      this.$store.state.activeProjects = result.data;
     });
-
-    // let activeCat = this.$store.state.projectCats;
-
     
   }
 }

@@ -31,7 +31,6 @@ export default {
       
       
       let storeCat = this.$store.state.projectCats;
-      // console.log(this.catChecked)
       let totalCat = this.$store.state.projectCats.length;
       
         if ( event.target.checked ) {
@@ -44,15 +43,7 @@ export default {
             this.catChecked = this.catChecked.filter( item => item != parseInt(categoryId) )
         }
       
-      // console.log(this.catChecked)
-
-      console.log(this.$store.state.projects)
-
-      let newProjects = [
-        ''
-      ];
-      this.$store.state.projects = newProjects;
-
+        this.$store.commit( 'checked', this.catChecked )
       }
   },
   mounted: function() {
