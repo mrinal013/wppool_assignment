@@ -9,7 +9,7 @@
       <v-container>
         <v-layout row wrap>
           <v-flex xs12>
-            Sort
+            <Sort />
             <p>{{counter}}</p>
             <button v-on:click="increment">Click</button>
           </v-flex>
@@ -32,12 +32,14 @@
 <script>
 import CatFilter from "./components/CatFilter.vue";
 import Card  from "./components/Card.vue";
+import Sort  from "./components/Sort.vue";
 
 export default {
   name: 'App',
   components: {
     CatFilter,
-    Card
+    Card,
+    Sort
   },
   data() {
     return {

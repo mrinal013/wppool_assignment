@@ -65,7 +65,7 @@ class Frontend {
 		 * class.
 		 */
 
-		// wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/wp-admin-vue.build.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'projects-css', plugin_dir_url( __FILE__ ) . 'assets/css/projects.build.css', array(), $this->version, 'all' );
 
 	}
 
