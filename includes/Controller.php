@@ -158,7 +158,7 @@ class Controller {
 
 		// Custom rest api to grab all projects and single project information
 		$this->loader->add_filter( 'rest_api_init', $plugin_admin, 'rest_api_all_projects' );
-		
+		$this->loader->add_filter( 'rest_api_init', $plugin_admin, 'rest_api_single_projects' );
 
 	}
 

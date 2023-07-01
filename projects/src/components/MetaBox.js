@@ -12,7 +12,7 @@ const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 	return(
 		<PluginDocumentSettingPanel 
 			title={ __( 'Project URL' ) } 
-			icon="book"
+			icon="admin-links"
 			initialOpen={ false }
 		>
 			<PanelRow>

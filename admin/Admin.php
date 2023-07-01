@@ -102,9 +102,6 @@ class Admin {
 				wp_enqueue_script( 'projects', plugin_dir_url( __FILE__ ) . 'assets/js/projects.build.js', array( 'jquery', 'jquery-ui-core' ), $this->version, true );
 			}
 		}
-		// if( $hook != 'edit.php' && $hook != 'post.php' && $hook != 'post-new.php' ) 
-		// return;
-		
 
 	}
 

@@ -34,6 +34,7 @@ export default {
   methods: {
     titleChecked: function() {
       this.isTitleChecked = !this.isTitleChecked;
+      this.$store.state.titleSortChecked = this.isTitleChecked;
 
       if ( this.isTitleChecked ) {
         this.$store.commit( 'sorting', 'titleasc' );

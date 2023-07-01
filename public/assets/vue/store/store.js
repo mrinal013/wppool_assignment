@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
         activeProjects: [],
         projectCats: [],
         checkedCat: [],
-        titleOrder: '',
+        titleSortChecked: false,
+        titleOrder: 'titleasc',
         catOrder: ''
     },
     getters: {
@@ -44,16 +45,18 @@ export const store = new Vuex.Store({
                 state.activeProjects = state.allprojects;
             }
 
-            console.log(state.titleOrder);
+            console.log(state.titleSortChecked);
 
-
-            this.commit( 'sorting', state.titleOrder );
+            if( state.titleSortChecked ) {
+                this.commit( 'sorting', state.titleOrder );
+            }
             
         },
         sorting(state, payload) {
             state.titleOrder = payload;
-            const activeProjects = state.activeProjects;
+            // const activeProjects = state.activeProjects;
             if ( payload == 'titledesc' ) {
+                let activeProjects = state.activeProjects;
                 activeProjects.sort( (a, b) => {
                     let fa = a.project_title.toLowerCase(),
                         fb = b.project_title.toLowerCase();
@@ -68,6 +71,7 @@ export const store = new Vuex.Store({
             }
 
             if ( payload == 'titleasc' ) {
+                let activeProjects = state.activeProjects;
                 activeProjects.sort( (a, b) => {
                     let fa = a.project_title.toLowerCase(),
                         fb = b.project_title.toLowerCase();

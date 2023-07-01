@@ -27,11 +27,11 @@ trait Gallery {
                 ?>
                 <div class="gallery_single_row wrapper">
                   <div class="gallery_area image_container">
-                    <img class="gallery_img_img" src="<?php echo esc_url( $gallery_data['image_url'][$i] ); ?>" height="55" width="55" />
+                    <img class="gallery_img_img" src="<?php echo esc_url( $gallery_data['image_url'][$i] ); ?>" width="100%" />
                     <input type="hidden"
                              class="meta_image_url"
                              name="gallery[image_url][]"
-                             value="<?php esc_url( $gallery_data['image_url'][$i] ); ?>"
+                             value="<?php echo esc_url( $gallery_data['image_url'][$i] ); ?>"
                       />
                   </div>
                   <div class="gallery_area">
@@ -69,7 +69,7 @@ trait Gallery {
 		}
 		$is_autosave = wp_is_post_autosave( $post_id );
 		$is_revision = wp_is_post_revision( $post_id );
-		$is_valid_nonce = ( isset( $_POST[ 'project_gallery_nonce' ] ) && wp_verify_nonce( $_POST[ 'project_gallery_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+		$is_valid_nonce = ( isset( $_POST[ 'project_gallery_nonce' ] ) && wp_verify_nonce( $_POST[ 'project_gallery_nonce' ], basename( __FILE__ ) ) ) ? true : false;
 		
 		if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
 				return;
@@ -88,12 +88,12 @@ trait Gallery {
 			// Build array for saving post meta
 			$gallery_data = array();
 
-			for ( $i = 0; $i <= count( $_POST['gallery']['image_url'] ); $i++ ) {
+			for ( $i = 0; $i < count( $_POST['gallery']['image_url'] ); $i++ ) {
 				if ( '' != $_POST['gallery']['image_url'][$i] ) {
-					$gallery_data['image_url'][]  = sanitize_url( $_POST['gallery']['image_url'][ $i ] );
+					$gallery_data['image_url'][$i]  = sanitize_url( $_POST['gallery']['image_url'][$i] );
 				}
-			}
-	 
+			}            
+
 			if ( ! empty( $gallery_data ) ) {
 				update_post_meta( $post_id, 'gallery_data', $gallery_data );
             } else  {

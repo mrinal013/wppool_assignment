@@ -8,7 +8,7 @@ trait REST_API {
             'methods' => 'GET',
             'callback' => [ $this, 'get_all_projects' ],
             'permission_callback' => '__return_true'
-          ) );
+        ) );
     }
 
     public function get_all_projects() {
@@ -39,5 +39,26 @@ trait REST_API {
             new \WP_Error( 'There are no project' );
         }
         
+    }
+
+    public function rest_api_single_projects() {
+        register_rest_route( 'projects/v1', '/single/(?P<id>\d+)', array(
+            'methods' => 'GET',
+            'callback' => [ $this, 'get_single_project' ],
+            'permission_callback' => '__return_true'
+        ) );
+        
+    }
+
+    public function get_single_project( $data ) {
+        $project_id = $data['id'];
+        $project_desc = get_post( $data['id'] )->post_content;
+        $project_gallery = get_post_meta( $project_id, 'gallery_data', true );
+        $project_url = get_post_meta( $project_id, '_project_external_url', true );
+        $object = new \StdClass();
+        $object->project_url = $project_url;
+        $object->project_gallery = $project_gallery;
+        $object->project_content = $project_desc;
+        return $object;
     }
 }
