@@ -39,7 +39,6 @@ export default {
       if ( this.isTitleChecked ) {
         this.$store.commit( 'sorting', 'titleasc' );
       } else {
-        // this.$store.state.titleOrder = 'titleasc';
         this.$store.commit( 'sorting', 'titledefault' );
       }
     },
@@ -47,7 +46,6 @@ export default {
       this.isCatChecked = !this.isCatChecked
     },
     onChange: function( event ) {
-      // console.log(event.target.value);
       this.$store.commit( 'sorting', event.target.value )
     }
   }

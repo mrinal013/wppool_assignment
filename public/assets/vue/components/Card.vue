@@ -11,7 +11,8 @@
     max-width="374"
   >
 <!-- {{ project }} -->
-    <v-img
+    <v-img 
+    class="cursor-pointer"
       height="250"
       :src="sourceUrl" contain
       v-bind="attrs"
@@ -29,6 +30,7 @@
     <v-card-title>Category: {{ catName }}</v-card-title>
 <div class="text-center">
     <v-btn
+          
           color="red lighten-2 mb-3"
           dark
           v-bind="attrs"
@@ -48,7 +50,9 @@
         </v-card-title>
 
         <v-card-text>
-          {{ projectContent }}
+          <div>
+            <div v-html="projectContent" />
+          </div>
         </v-card-text>
 
         <v-divider></v-divider>
@@ -129,25 +133,12 @@ export default {
       dialog: false,
     }
   },
-  computed: {
-    // projectUrl() {
-    //   let allprojects = this.$store.state.allprojects;
-    //   let allprojectsLength = allprojects.length;
-    //   for ( let i = 0; i < allprojectsLength; i++ ) {
-
-    //     if ( allprojects[i].project_id = project_id ) {
-    //       console.log('Hello')
-    //       this.projectUrl = allprojects[i].project_url;
-    //     }
-    //   }
-    // }
-  },
   methods: {
     fetchSingle: function( project_id ) {
       let projects = this.$store.state.allprojects;
+      
       for( let i =0; i < projects.length; i++ ) {
         if( projects[i].project_id == project_id ) {
-          if ( projects[i].hasOwnProperty('project_gallery').toString() == 'false' ) {
             let restUrl = frontend_ajax_object.rest_url;
             let singleProjectUrl = restUrl + 'projects/v1/single/' + project_id;
             this.axios.get( singleProjectUrl )
@@ -159,12 +150,9 @@ export default {
               this.projectUrl = result.data.project_url;
               let projectGalleryObserver = result.data.project_gallery.image_url;
               this.projectGallery = JSON.parse(JSON.stringify(projectGalleryObserver));
-              // console.log(projectGallery)
             })
-          }
         }
       }
-      console.log(projects)
       
 
       }

@@ -3,6 +3,7 @@ namespace Projects\Admin;
 
 use Projects\Admin\CT as CT;
 use Projects\Admin\CPT as CPT;
+use Projects\Admin\Block as Block;
 use Projects\Admin\Gallery as Gallery;
 use Projects\Admin\External_URL as External_URL;
 use Projects\Admin\REST_API as REST_API;
@@ -20,7 +21,7 @@ use Projects\Admin\REST_API as REST_API;
 
 class Admin {
 
-	use CT, CPT, Gallery, External_URL, REST_API;
+	use CT, CPT, Block, Gallery, External_URL, REST_API;
 
 	/**
 	 * The ID of this plugin.
@@ -60,7 +61,7 @@ class Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles( $hook ) {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -73,8 +74,12 @@ class Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_style( 'project-css', plugin_dir_url( __FILE__ ) . 'assets/css/projects.build.css', array(), $this->version, 'all' );
+		global $post;
+		if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+			if ( 'projects' === $post->post_type ) {
+				wp_enqueue_style( 'project-css', plugin_dir_url( __FILE__ ) . 'assets/css/projects.build.css', array(), $this->version, 'all' );
+			}
+		}
 
 	}
 

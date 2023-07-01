@@ -2,10 +2,10 @@
 <v-app>
 <v-container>
   <v-layout row wrap>
-    <v-flex xs3>
+    <v-flex xs12 md3>
       <CatFilter />
     </v-flex>
-    <v-flex xs9>
+    <v-flex xs12 md9>
       <v-container>
         <v-layout row wrap>
           <v-flex xs12>
@@ -13,7 +13,7 @@
           </v-flex>
           <v-flex xs12>
             <v-layout wrap>
-              <v-flex v-for="project in projects" :key="project.project_id" xs6 class="px-3">
+              <v-flex v-for="project in projects" :key="project.project_id"  xs12 md6 class="px-3">
                 <Card :project_id="project.project_id" />
               </v-flex>
             </v-layout>

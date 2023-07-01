@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ul>
+  <b>Filter by category</b>
+    <ul class="unstyled">
       <li v-for="(cat, key, index) in projectCat" :key="key">
         <input type="checkbox" :id="`cat-${cat.catId}`" :name="`cat-${cat.catId}`" v-on:click="selectedCat(cat.catId, $event)">
         <label :for="`cat-${cat.catId}`">{{cat.catName + ' (' + cat.count + ')'}}</label><br>

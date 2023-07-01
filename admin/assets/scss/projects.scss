@@ -62,6 +62,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 }
 .button.remove:hover {
     background: #FF0000;

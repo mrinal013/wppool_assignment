@@ -6,7 +6,6 @@ import { PanelRow, TextControl } from '@wordpress/components';
 
 const MetaBox = ( { postType, metaFields, setMetaFields } ) => {
 
-	console.log(metaFields)
 	if ( 'projects' !== postType ) return null;
 
 	return(
